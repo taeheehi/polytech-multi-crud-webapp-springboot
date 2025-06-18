@@ -1,0 +1,43 @@
+/* 📄 error_404.css — 404 에러 전용 스타일 */
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  text-align: center;
+  margin-top: 100px;
+}
+
+main h1 {
+  font-size: 4rem;
+  color: #e63946;
+  margin-bottom: 16px;
+}
+
+main p {
+  font-size: 1.2rem;
+  color: #444;
+  margin: 4px 0;
+}
+
+main a {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 12px 28px;
+  background-color: #1e62d0;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+main a:hover {
+  background-color: #154cb0;
+  transform: scale(1.03);
+}

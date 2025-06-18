@@ -1,0 +1,70 @@
+/* ===== 전체 배경 및 기본 텍스트 설정 ===== */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f7fa;
+  text-align: center;
+}
+
+/* ===== 메인 컨테이너 정렬 ===== */
+.list-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== 제목 스타일 ===== */
+.list-container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+}
+
+/* ===== 사용자 테이블 ===== */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-bottom: 30px;
+}
+
+/* 테이블 헤더 스타일 */
+.user-table thead {
+  background-color: #1e62d0;
+  color: #ffffff;
+}
+
+.user-table th, .user-table td {
+  padding: 12px 10px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+/* 테이블 행 hover 효과 */
+.user-table tbody tr:hover {
+  background-color: #f0f5ff;
+}
+
+/* ===== 돌아가기 버튼 영역 ===== */
+.button-area {
+  text-align: center;
+}
+
+/* 돌아가기 버튼 스타일 */
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1e62d0;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #154cb0;
+}

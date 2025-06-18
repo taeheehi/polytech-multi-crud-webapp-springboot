@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>404 - 페이지를 찾을 수 없습니다</title>
+
+  <!-- ✅ 홈페이지 스타일 유지 -->    <!-- ✅ CSS 경로 단순화 (Spring Boot는 contextPath 생략 가능) -->
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/error_404.css">
+</head>
+<body>
+
+  <!-- ✅ 상단 네비게이션 바 -->  
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="/" class="logo">홈페이지</a>
+    </div>
+
+    <div class="nav-right">
+      <c:choose>
+        <c:when test="${sessionScope.user_type == 'admin'}">
+          <span>${sessionScope.login_id}님</span>
+          <a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
+          <a href="${pageContext.request.contextPath}/user_list">회원관리</a>
+          <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+        </c:when>
+        <c:when test="${sessionScope.user_type == 'guest'}">
+          <span>${sessionScope.login_id}님</span>
+          <a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
+          <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+        </c:when>
+        <c:otherwise>
+          <a href="${pageContext.request.contextPath}/login">로그인</a>
+          <a href="${pageContext.request.contextPath}/join">회원가입</a>
+        </c:otherwise>
+      </c:choose>
+    </div>
+  </header>
+
+  <!-- ❌ 본문 에러 메시지 -->
+  <main style="text-align: center; margin-top: 80px;">
+    <h1 style="font-size: 3rem; color: #e63946;">🚫 404</h1>
+    <p style="font-size: 1.2rem;">페이지를 찾을 수 없습니다.</p>
+    <p style="margin-top: 10px;">주소가 잘못되었거나, 삭제된 페이지입니다.</p>
+    <a href="${pageContext.request.contextPath}/"
+       style="display:inline-block; margin-top: 24px; padding: 10px 24px;
+              background-color: #1e62d0; color: white; text-decoration: none;
+              border-radius: 6px; font-weight: bold;">
+      🏠 홈으로 돌아가기
+    </a>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+a {
+    display: inline-block;
+    padding: 30px 50px;
+    margin: 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover, a:visited {
+    color: #345633;
+}
+
+p {
+    margin: 5px auto;
+    padding: 10px;
+    text-align: center;
+    color: darkblue;
+    font-size: 12px;
+    line-height: 2em;
+    border: 1px solid #e1e1e1;
+}

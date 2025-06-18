@@ -1,0 +1,66 @@
+/* 📄 join.css — 회원가입 화면 전용 */
+
+.join-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.join-container h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.join-form label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.join-form input[type="text"],
+.join-form input[type="password"] {
+  width: 100%; /* ✅ 너비 통일 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box; /* ✅ 패딩 포함 너비 계산 */
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+/* 🔧 포커스 시 밑줄(테두리) 스타일 통일 */
+.join-form input[type="text"]:focus,
+.join-form input[type="password"]:focus {
+  border: 2px solid #1e62d0;
+}
+
+/* 힌트 텍스트 스타일 */
+.join-form input::placeholder {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.join-form button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #1e62d0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.join-form button:hover {
+  background-color: #154cb0;
+}

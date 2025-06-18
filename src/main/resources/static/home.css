@@ -1,0 +1,155 @@
+/* ===== 전체 공통 설정 ===== */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f7fa;
+  text-align: center;
+}
+
+/* ===== 상단 네비게이션 바 ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* 왼쪽: 로고 / 오른쪽: 메뉴 */
+  align-items: center;
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 하단 그림자 */
+}
+
+/* 왼쪽 로고 텍스트 스타일 */
+.nav-left .logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #2d2d2d;
+  text-decoration: none;
+}
+
+/* 오른쪽 로그인/로그아웃/회원관리 등 메뉴 */
+.nav-right a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #2d2d2d;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* 메뉴 hover 시 색상 변경 */
+.nav-right a:hover {
+  color: #1e62d0;
+}
+
+/* 사용자명 출력용 span */
+.nav-right span {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #2d2d2d;
+}
+
+/* ===== 검색창 영역 ===== */
+.search-section {
+  margin: 30px auto 10px;
+}
+
+/* 검색창 박스 */
+.search-box {
+  width: 500px; /* 👉 너비 넓힘 */
+  display: flex;
+  margin: 0 auto;
+  border: 2px solid #1e62d0;
+  border-radius: 30px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+/* 검색창 입력 필드 */
+.search-box input {
+  flex: 1;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* 검색 버튼 스타일 */
+.search-box button {
+  background-color: #1e62d0;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* 검색 버튼 hover 시 효과 */
+.search-box button:hover {
+  background-color: #174cbf;
+  transform: scale(1.05); /* 약간 커짐 */
+}
+
+/* ===== 기능 아이콘 영역 ===== */
+.icon-bar {
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* 반응형 줄바꿈 허용 */
+}
+
+/* 아이콘 하나의 링크 전체 */
+.icon-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.3s ease;
+}
+
+.icon-link:hover {
+  transform: scale(1.05);
+}
+
+/* 동그란 이모지 영역 */
+.icon-item {
+  width: 50px;
+  height: 50px;
+  background-color: #e3e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  transition: background-color 0.3s ease;
+}
+
+.icon-item:hover {
+  background-color: #cfd6e1;
+}
+
+/* 아이콘 아래 텍스트 */
+.icon-label {
+  font-size: 0.85rem;
+  color: #222;
+  margin-top: 2px;
+}
+
+/* ===== 반응형 (모바일 대응) ===== */
+@media screen and (max-width: 600px) {
+  .search-box {
+    width: 85%;
+  }
+  .icon-bar {
+    gap: 24px;
+  }
+  .icon-item {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+  }
+  .icon-label {
+    font-size: 0.8rem;
+  }
+}

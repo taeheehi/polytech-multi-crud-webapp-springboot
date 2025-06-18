@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>홈페이지</title>
+  <!-- 💡 외부 CSS 연결 (Spring Boot는 contextPath 생략 가능) -->
+  <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+
+  <!-- ✅ 상단 네비게이션 바 -->
+  <header class="navbar">
+    <div class="nav-left">
+      <!-- 왼쪽 로고 -->
+      <a href="/" class="logo">홈페이지</a>
+    </div>
+
+    <!-- 오른쪽 메뉴: 로그인 상태에 따라 다르게 출력 -->
+    <div class="nav-right">
+      <!-- 💡 JSTL 제거: 이후 JavaScript로 세션 판단 구현 필요 -->
+      <a href="/login">로그인</a>
+      <a href="/join">회원가입</a>
+      <!-- 나머지 로그인 상태 메뉴는 추후 JS 조건 처리 예정 -->
+    </div>
+  </header>
+
+  <!-- ✅ 본문 메인 -->
+  <main>
+    <!-- 🔍 검색 영역 -->
+    <div class="search-section">
+      <div class="search-box">
+        <input type="text" placeholder="검색어를 입력하세요...">
+        <button>검색</button>
+      </div>
+    </div>
+
+    <!-- 🎯 기능 아이콘 3종 (게시판, 쇼핑몰, 게임) -->
+    <div class="icon-bar">
+      <a href="/board" class="icon-link">
+        <div class="icon-item">😀</div>
+        <div class="icon-label">게시판</div>
+      </a>
+      <a href="/shop" class="icon-link">
+        <div class="icon-item">🛒</div>
+        <div class="icon-label">쇼핑몰</div>
+      </a>
+      <a href="/game" class="icon-link">
+        <div class="icon-item">🎮</div>
+        <div class="icon-label">게임</div>
+      </a>
+    </div>
+  </main>
+
+</body>
+</html>

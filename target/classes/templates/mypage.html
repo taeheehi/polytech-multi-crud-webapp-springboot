@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>마이페이지</title>
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/mypage.css"> <!-- 🧩 새로 추가된 전용 CSS -->
+</head>
+<body>
+
+  <!-- ✅ 상단 네비게이션 바 (home.jsp 동일) -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="/" class="logo">홈페이지</a>
+    </div>
+    <div class="nav-right">
+      <span id="login_id">로그인유저</span> <!-- ✅ JS로 대체 예정 -->
+      <a href="/mypage">마이페이지</a>
+      <a href="/logout">로그아웃</a>
+    </div>
+  </header>
+
+  <!-- ✅ 본문 영역 -->
+  <div class="mypage-container">
+    <h2>👤 마이페이지</h2>
+    <p><strong>아이디:</strong> <span id="user_id"></span></p>
+    <p><strong>이름:</strong> <span id="user_name"></span></p>
+    <p><strong>전화번호:</strong> <span id="user_phone"></span></p>
+    <p><strong>주소:</strong> <span id="user_address"></span></p>
+
+    <div class="button-group">
+      <form action="/" method="get">
+        <button type="submit">⬅ 홈으로</button>
+      </form>
+      <form action="/mypage_edit" method="get">
+        <button type="submit">내 정보 수정</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>회원 목록</title>
+
+  <!-- ✅ 공통 스타일: 네비게이션, 배경 등 -->
+  <link rel="stylesheet" href="/home.css">
+  <!-- ✅ 테이블 전용 스타일 -->
+  <link rel="stylesheet" href="/user_list.css">
+</head>
+<body>
+
+  <!-- ✅ 상단 네비게이션 바 -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="/" class="logo">홈페이지</a>
+    </div>
+    <div class="nav-right">
+      <span>admin님</span>
+      <a href="/mypage">마이페이지</a>
+      <a href="/user_list">회원관리</a>
+      <a href="/logout">로그아웃</a>
+    </div>
+  </header>
+
+  <!-- ✅ 본문 콘텐츠 -->
+  <main class="list-container">
+    <h2>📋 전체 회원 목록 (관리자 전용)</h2>
+
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>권한</th>
+          <th>ID</th>
+          <th>이름</th>
+          <th>연락처</th>
+          <th>주소</th>
+          <th>가입일</th>
+          <th>수정일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 🔁 향후 fetch로 동적으로 채움 -->
+        <tr>
+          <td>1</td>
+          <td>admin</td>
+          <td>admin01</td>
+          <td>관리자</td>
+          <td>010-1234-5678</td>
+          <td>서울시 강남구</td>
+          <td>2024-05-01</td>
+          <td>2024-05-15</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="button-area">
+      <a href="/" class="back-btn">← 돌아가기</a>
+    </div>
+  </main>
+
+</body>
+</html>

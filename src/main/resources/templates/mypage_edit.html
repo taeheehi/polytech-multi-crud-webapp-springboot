@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>정보 수정</title>
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/mypage_edit.css">
+</head>
+<body>
+
+  <!-- ✅ 상단 네비게이션 바 (home.jsp와 동일) -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="/" class="logo">홈페이지</a>
+    </div>
+    <div class="nav-right">
+      <span id="login_id">로그인유저</span> <!-- ✅ JS로 동적으로 대체 예정 -->
+      <a href="/mypage">마이페이지</a>
+      <a href="/logout">로그아웃</a>
+    </div>
+  </header>
+
+  <!-- ✅ 본문: 수정 폼 -->
+  <div class="edit-container">
+    <h2>✏️ 내 정보 수정</h2>
+    <form class="edit-form" action="/mypage_edit_action" method="post">
+      <!-- Spring에서는 서버 템플릿 없이 JS로 사용자 정보 주입 필요 -->
+      <input type="hidden" name="id" value="userId"> <!-- 이후 JS로 값 넣기 -->
+
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" value="">
+
+      <label for="phone">전화번호</label>
+      <input type="text" name="phone" id="phone" value="">
+
+      <label for="address">주소</label>
+      <input type="text" name="address" id="address" value="">
+
+      <button type="submit">수정 완료</button>
+    </form>
+  </div>
+
+</body>
+</html>
