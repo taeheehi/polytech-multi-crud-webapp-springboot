@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>회원 목록</title>
 
-  <!-- ✅ 공통 스타일: 네비게이션, 배경 등 -->
+  <!-- ✅ 공통 스타일 -->
   <link rel="stylesheet" href="/home.css">
   <!-- ✅ 테이블 전용 스타일 -->
   <link rel="stylesheet" href="/user_list.css">
@@ -16,11 +16,8 @@
     <div class="nav-left">
       <a href="/" class="logo">홈페이지</a>
     </div>
-    <div class="nav-right">
-      <span>admin님</span>
-      <a href="/mypage">마이페이지</a>
-      <a href="/user_list">회원관리</a>
-      <a href="/logout">로그아웃</a>
+    <div class="nav-right" id="nav-right">
+      <!-- JS에서 로그인 상태에 따라 동적으로 출력됨 -->
     </div>
   </header>
 
@@ -41,18 +38,8 @@
           <th>수정일</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- 🔁 향후 fetch로 동적으로 채움 -->
-        <tr>
-          <td>1</td>
-          <td>admin</td>
-          <td>admin01</td>
-          <td>관리자</td>
-          <td>010-1234-5678</td>
-          <td>서울시 강남구</td>
-          <td>2024-05-01</td>
-          <td>2024-05-15</td>
-        </tr>
+      <tbody id="userTableBody">
+        <!-- 🔁 JS에서 fetch로 동적으로 채움 -->
       </tbody>
     </table>
 
@@ -60,6 +47,50 @@
       <a href="/" class="back-btn">← 돌아가기</a>
     </div>
   </main>
+
+  <!-- ✅ JavaScript: 로그인 세션 + 회원 목록 동적 처리 -->
+  <script>
+    // 🔐 로그인 상태 확인 후 상단 메뉴 렌더링
+    fetch("/sessionCheck")
+      .then(res => res.json())
+      .then(data => {
+        let html = "";
+        if (data.is_login) {
+          html += `<span>${data.login_id}님</span>`;
+          html += `<a href="/mypage">마이페이지</a>`;
+          if (data.user_type === "admin") {
+            html += `<a href="/user_list">회원관리</a>`;
+          }
+          html += `<a href="/logout">로그아웃</a>`;
+        } else {
+          html += `<a href="/login">로그인</a>`;
+          html += `<a href="/join">회원가입</a>`;
+        }
+        document.getElementById("nav-right").innerHTML = html;
+      });
+                                                                     
+    // 📋 회원 목록 불러오기
+    fetch("/getUsersJson")
+      .then(res => res.json())
+      .then(users => {
+        let html = "";
+        users.forEach((u, i) => {
+          html += `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${u.userType}</td>
+              <td>${u.id}</td>
+              <td>${u.name}</td>
+              <td>${u.phone}</td>
+              <td>${u.address}</td>
+              <td>${u.created}</td>
+              <td>${u.lastUpdated}</td>
+            </tr>
+          `;
+        });
+        document.querySelector("#userTableBody").innerHTML = html;
+      });
+  </script>
 
 </body>
 </html>

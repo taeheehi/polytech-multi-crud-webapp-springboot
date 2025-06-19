@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>회원가입</title>
-  <link rel="stylesheet" href="/home.css">
-  <link rel="stylesheet" href="/join.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/join.css">
 </head>
 <body>
 
@@ -13,17 +13,15 @@
     <div class="nav-left">
       <a href="/" class="logo">홈페이지</a>
     </div>
-    <div class="nav-right">
-      <a href="/login">로그인</a>
-      <a href="/join">회원가입</a>
+    <div class="nav-right" id="nav-right">
+      <!-- JS에서 로그인 상태에 따라 메뉴 동적 렌더링 -->
     </div>
   </header>
 
   <!-- ✅ 본문 -->
   <div class="join-container">
     <h2>📝 회원가입</h2>
-    <form class="join-form" action="/join_action" method="post">
-      <!-- 꼭 post방식으로(주소창 노출안되게) , 하지만 스프링에서는 한글로 post 보내면 깨진다.-->
+    <form class="join-form" action="/join_action" method="post" onsubmit="return validateForm();">
       <label for="name">이름</label>
       <input type="text" name="name" id="name" required>
 
@@ -34,7 +32,7 @@
       <input type="password" name="pwd" id="pwd" required>
 
       <label for="pwd2">비밀번호 확인</label>
-      <input type="password" name="pwd2" id="pwd2" required>
+      <input type="password" id="pwd2" required>
 
       <label for="phone">전화번호</label>
       <input type="text" name="phone" id="phone" placeholder="010-1234-5678">
@@ -45,6 +43,23 @@
       <button type="submit">회원가입 완료</button>
     </form>
   </div>
+
+  <!-- ✅ 공통 네비게이션 처리 JS -->
+  <script src="/js/common.js"></script>
+  <script>
+    renderNavMenu(); // 로그인 상태에 따라 nav-right 채우기
+
+    // 🔐 비밀번호 확인 유효성 검사
+    function validateForm() {
+      const pwd = document.getElementById('pwd').value;
+      const pwd2 = document.getElementById('pwd2').value;
+      if (pwd !== pwd2) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+      }
+      return true;
+    }
+  </script>
 
 </body>
 </html>

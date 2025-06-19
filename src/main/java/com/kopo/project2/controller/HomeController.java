@@ -102,8 +102,9 @@ public class HomeController {
         }
 
         // 디버깅 로그 출력
-        System.out.println("로그인 결과 테스트:");
+        System.out.println("로그인 결과 테스트(로그인 사용자 정보):");
         System.out.println("→ is_login: " + session.getAttribute("is_login"));
+        System.out.println("→ ID: " + loggedUser.getId());
         System.out.println("→ user_type: " + session.getAttribute("user_type"));
         return "redirect:/";
     }
@@ -212,14 +213,21 @@ public class HomeController {
         return "redirect:/mypage";
     }
 
+    // ✅ 현재 로그인 상태 및 사용자 유형(admin/guest) 확인용 API
+    // - JS에서 fetch()로 호출해 로그인 여부와 user_type 전달
+    // - user_type: admin일 경우 관리자 메뉴 노출
     @RequestMapping("/sessionCheck")
     public void sessionCheck(HttpSession session, HttpServletResponse response) {
         response.setContentType("application/json; charset=UTF-8");
         try {
             boolean isLogin = Boolean.TRUE.equals(session.getAttribute("is_login"));
             String loginId = (String) session.getAttribute("login_id");
+            String userType = (String) session.getAttribute("user_type"); // 추가!
 
-            String json = String.format("{\"is_login\": %b, \"login_id\": \"%s\"}", isLogin, loginId);
+            String json = String.format(
+                    "{\"is_login\": %b, \"login_id\": \"%s\", \"user_type\": \"%s\"}",
+                    isLogin, loginId, userType);
+
             PrintWriter out = response.getWriter();
             out.print(json);
             out.flush();

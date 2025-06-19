@@ -3,24 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>마이페이지</title>
-  <link rel="stylesheet" href="/home.css">
-  <link rel="stylesheet" href="/mypage.css"> <!-- 🧩 새로 추가된 전용 CSS -->
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/mypage.css">
 </head>
 <body>
 
-  <!-- ✅ 상단 네비게이션 바 (home.jsp 동일) -->
+  <!-- ✅ 상단 네비게이션 바 -->
   <header class="navbar">
     <div class="nav-left">
       <a href="/" class="logo">홈페이지</a>
     </div>
-    <div class="nav-right">
-      <span id="login_id">로그인유저</span> <!-- ✅ JS로 대체 예정 -->
-      <a href="/mypage">마이페이지</a>
-      <a href="/logout">로그아웃</a>
+    <div class="nav-right" id="nav-right">
+      <!-- JS로 로그인 상태에 따라 메뉴 동적 출력 -->
     </div>
   </header>
 
-  <!-- ✅ 본문 영역 -->
+  <!-- ✅ 본문 마이페이지 -->
   <div class="mypage-container">
     <h2>👤 마이페이지</h2>
     <p><strong>아이디:</strong> <span id="user_id"></span></p>
@@ -37,6 +35,25 @@
       </form>
     </div>
   </div>
+
+  <!-- ✅ JS: 상단 메뉴 + 사용자 정보 표시 -->
+  <script>
+
+    // 마이페이지 사용자 정보 표시
+    fetch("/getMyInfoJson")
+      .then(res => res.json())
+      .then(user => {
+        document.getElementById("user_id").innerText = user.id;
+        document.getElementById("user_name").innerText = user.name;
+        document.getElementById("user_phone").innerText = user.phone;
+        document.getElementById("user_address").innerText = user.address;
+      });
+  </script>
+  
+  <script src="/js/common.js"></script>
+  <script>
+    renderNavMenu();  // 로그인 상태에 따라 메뉴 출력
+  </script>
 
 </body>
 </html>
