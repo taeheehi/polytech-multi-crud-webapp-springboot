@@ -81,7 +81,7 @@ public class DB {
         String query = "INSERT INTO user (user_type, id, pwd, name, phone, address, created, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = this.connection.prepareStatement(query);
-            statement.setString(1, "guest");
+            statement.setString(1, user.getUserType()); // 관리자 회원가입으로 변경
             statement.setString(2, user.getId());
             statement.setString(3, hashSHA512(user.getPwd()));
             statement.setString(4, user.getName());

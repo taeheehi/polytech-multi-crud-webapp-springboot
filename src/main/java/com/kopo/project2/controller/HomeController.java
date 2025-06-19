@@ -50,6 +50,13 @@ public class HomeController {
         String pwd = request.getParameter("pwd");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
+        String adminCode = request.getParameter("adminCode"); // ✅ 추가: 관리자 코드
+
+        // ✅ 관리자 코드 확인 → userType 분기
+        String userType = "user";
+        if ("admin1234".equals(adminCode)) { // 🔐 관리자 코드 (변경 가능)
+            userType = "admin";
+        }
 
         DB db = new DB();
 
@@ -63,11 +70,14 @@ public class HomeController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return null; // 더 이상 진행 안 함
+            return null;
         }
 
-        // ✅ 중복이 아니라면 등록 진행
-        db.insertData(new User(id, pwd, name, phone, address));
+        // ✅ userType 포함해서 등록
+        User user = new User(id, pwd, name, phone, address);
+        user.setUserType(userType); // 이 메서드가 있어야 함
+        db.insertData(user); // ← userType까지 포함된 메서드일 것
+
         return "redirect:/";
     }
 
