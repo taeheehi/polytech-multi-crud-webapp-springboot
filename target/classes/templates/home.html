@@ -51,5 +51,22 @@
     </div>
   </main>
 
+
+  <!--  JavaScript로 로그인 여부 체크 -->
+  <script>
+    fetch("/sessionCheck")
+      .then(res => res.json())
+      .then(data => {
+        if (data.is_login) {
+          document.querySelector(".nav-right").innerHTML = `
+            <span>${data.login_id}님</span>
+            <a href="/mypage">마이페이지</a>
+            <a href="/logout">로그아웃</a>
+          `;
+        }
+      });
+  </script>
+
+
 </body>
 </html>

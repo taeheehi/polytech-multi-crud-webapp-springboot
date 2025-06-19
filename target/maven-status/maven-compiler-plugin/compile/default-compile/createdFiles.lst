@@ -1,1 +1,6 @@
+com\kopo\project2\model\User.class
+com\kopo\project2\controller\ErrorController.class
 com\kopo\project2\Project2Application.class
+com\kopo\project2\controller\ApiController.class
+com\kopo\project2\repository\DB.class
+com\kopo\project2\controller\HomeController.class
