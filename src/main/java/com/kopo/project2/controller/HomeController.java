@@ -199,7 +199,7 @@ public class HomeController {
 
     // 💾 마이페이지 수정 처리 (DB update)
     @RequestMapping(value = "/mypage_edit_action", method = RequestMethod.POST)
-    public String mypageEditAction(HttpServletRequest request) {
+    public String mypageEditAction(HttpServletRequest request, HttpSession session) {
         try {
             request.setCharacterEncoding("UTF-8");
         } catch (Exception e) {
@@ -211,15 +211,19 @@ public class HomeController {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
 
-        System.out.println("📅 수정 요청 들어옴:");
-        System.out.println("id = " + id);
-        System.out.println("name = " + name);
-        System.out.println("phone = " + phone);
-        System.out.println("address = " + address);
-
         DB db = new DB();
-        db.updateUser(new User(id, "", name, phone, address));
+        User original = db.selectOne(id); // 기존 정보 불러오기
 
+        // ✅ 변경 사항 있을 때만 update
+        if (!name.equals(original.getName()) ||
+                !phone.equals(original.getPhone()) ||
+                !address.equals(original.getAddress())) {
+
+            db.updateUser(new User(id, "", name, phone, address));
+            return "redirect:/mypage?message=updated";
+        }
+
+        // ✅ 변경 사항 없으면 메시지 없이 이동
         return "redirect:/mypage";
     }
 

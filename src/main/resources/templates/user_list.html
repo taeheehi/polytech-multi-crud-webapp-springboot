@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="/css/home.css">
   <!-- ✅ 테이블 전용 스타일 -->
   <link rel="stylesheet" href="/css/user_list.css">
+  <!-- ✅ 수정 알람 스타일 -->
+  <link rel="stylesheet" href="/css/common.css">
+
+
 </head>
 <body>
 
@@ -20,6 +24,12 @@
       <!-- JS에서 로그인 상태에 따라 동적으로 출력됨 -->
     </div>
   </header>
+
+
+  <!-- ✅ 커스텀 알림 메시지 박스 (자동 닫힘 + 수동 닫기 지원) -->
+  <div id="customAlert"></div>
+
+
 
   <!-- ✅ 본문 콘텐츠 -->
   <main class="list-container">
@@ -36,6 +46,7 @@
           <th>주소</th>
           <th>가입일</th>
           <th>수정일</th>
+          <th>수정</th>
         </tr>
       </thead>
       <tbody id="userTableBody">
@@ -47,28 +58,11 @@
       <a href="/" class="back-btn">← 돌아가기</a>
     </div>
   </main>
+  
+
 
   <!-- ✅ JavaScript: 로그인 세션 + 회원 목록 동적 처리 -->
-  <script>
-    // 🔐 로그인 상태 확인 후 상단 메뉴 렌더링
-    fetch("/sessionCheck")
-      .then(res => res.json())
-      .then(data => {
-        let html = "";
-        if (data.is_login) {
-          html += `<span>${data.login_id}님</span>`;
-          html += `<a href="/mypage">마이페이지</a>`;
-          if (data.user_type === "admin") {
-            html += `<a href="/user_list">회원관리</a>`;
-          }
-          html += `<a href="/logout">로그아웃</a>`;
-        } else {
-          html += `<a href="/login">로그인</a>`;
-          html += `<a href="/join">회원가입</a>`;
-        }
-        document.getElementById("nav-right").innerHTML = html;
-      });
-                                                                     
+  <script>                                                          
     // 📋 회원 목록 불러오기
     fetch("/getUsersJson")
       .then(res => res.json())
@@ -85,12 +79,34 @@
               <td>${u.address}</td>
               <td>${u.created}</td>
               <td>${u.lastUpdated}</td>
+              <td>
+                <a href="/admin/user/edit?id=${u.id}" class="btn btn-sm btn-outline-primary">수정</a>
+              </td>
             </tr>
           `;
         });
         document.querySelector("#userTableBody").innerHTML = html;
       });
+
+
   </script>
+
+
+
+  <!-- ✅ 공동 수정완료시 JS 호출 -->
+  <script src="/js/common.js"></script>
+  <script>
+    renderNavMenu();        // 로그인 메뉴 출력
+    showMessageIfExists();  // ✅ 메시지 알림 출력
+  </script>
+
+
+
+
+
+
+
+
 
 </body>
 </html>

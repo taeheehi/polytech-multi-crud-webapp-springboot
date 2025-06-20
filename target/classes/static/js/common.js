@@ -25,3 +25,40 @@ function renderNavMenu() {
       if (nav) nav.innerHTML = html;
     });
 }
+
+// ✅ 공통 - 수정 메시지 알림 함수
+function showMessageIfExists() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const msg = urlParams.get("message");
+  const alertBox = document.getElementById("customAlert");
+
+  if (msg && alertBox) {
+    const messages = {
+      updated: "회원 정보가 수정되었습니다.",
+      deleted: "회원이 삭제되었습니다.",
+    };
+
+    alertBox.innerHTML = `
+      ${messages[msg] || "처리 결과가 없습니다."}
+      <button onclick="this.parentElement.style.display='none'">✖</button>
+    `;
+    alertBox.style.display = "block";
+
+    setTimeout(() => {
+      alertBox.style.display = "none";
+    }, 3000);
+
+    history.replaceState({}, "", location.pathname);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

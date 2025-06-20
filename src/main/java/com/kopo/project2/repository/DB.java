@@ -215,27 +215,26 @@ public class DB {
     }
 
     // ✏️ 회원 수정 (name, phone, address)
-    public void updateUser(User user) {
-        PreparedStatement ps = null;
+    public boolean updateUser(User user) {
+        boolean result = false;
         try {
             connect();
-            String query = "UPDATE user SET name=?, phone=?, address=? WHERE id=?";
-            ps = connection.prepareStatement(query);
+            String query = "UPDATE user SET name=?, phone=?, address=?, last_updated=NOW() WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, user.getName());
             ps.setString(2, user.getPhone());
             ps.setString(3, user.getAddress());
             ps.setString(4, user.getId());
-            ps.executeUpdate();
+
+            int rows = ps.executeUpdate();
+            result = rows > 0;
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (ps != null)
-                    ps.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
             disconnect();
         }
+        return result;
     }
+
 }

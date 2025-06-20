@@ -1,0 +1,23 @@
+#customAlert {
+  display: none;
+  background-color: #e0ffe0;
+  color: green;
+  padding: 12px 50px 12px 14px;  /* ✅ 버튼 공간 확보 */
+  margin: 10px 20px;
+  border: 1px solid green;
+  font-weight: bold;
+  position: relative;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#customAlert button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: green;
+  cursor: pointer;
+}

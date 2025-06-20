@@ -5,6 +5,8 @@
   <title>마이페이지</title>
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/mypage.css">
+  <link rel="stylesheet" href="/css/common.css">
+
 </head>
 <body>
 
@@ -17,6 +19,10 @@
       <!-- JS로 로그인 상태에 따라 메뉴 동적 출력 -->
     </div>
   </header>
+
+  <!-- ✅ 커스텀 알림 메시지 박스 (자동 닫힘 + 수동 닫기 지원) -->
+  <div id="customAlert"></div>
+
 
   <!-- ✅ 본문 마이페이지 -->
   <div class="mypage-container">
@@ -50,9 +56,11 @@
       });
   </script>
   
+  <!-- ✅ 공동 수정완료시 JS 호출 -->
   <script src="/js/common.js"></script>
   <script>
-    renderNavMenu();  // 로그인 상태에 따라 메뉴 출력
+    renderNavMenu();
+    showMessageIfExists(); // 메시지 출력 실행!
   </script>
 
 </body>
